@@ -13,15 +13,26 @@ def test_step1a():
     for k in test_cases:
         assert stemmer(k) == test_cases[k]
 
+
 def test_step1b():
     stemmer = PorterStemmer()
     test_cases = {
-        "feed"      : "feed",
-        "agreed"    : "agree",
-        "plastered" : "plaster",
-        "bled"      : "bled",
-        "motoring"  : "motor",
-        "sing"      : "sing",
+        "feed": "feed",
+        "agreed": "agree",
+        "plastered": "plaster",
+        "bled": "bled",
+        "motoring": "motor",
+        "sing": "sing",
+        "conflated": "conflate",
+        "troubled": "trouble",
+        "sized": "size",
+        "hopping": "hop",
+        "tanned": "tan",
+        "falling": "fall",
+        "hissing": "hiss",
+        "fizzed": "fizz",
+        "failing": "fail",
+        "filing": "file",
     }
     for k in test_cases:
         assert stemmer(k) == test_cases[k]
