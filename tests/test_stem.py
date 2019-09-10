@@ -103,7 +103,7 @@ def test_step4():
         "defensible"   :  "defens" ,
         "irritant"   :  "irrit" ,
         "replacement"   :  "replac" ,
-        "adjustment "   :  "adjust" ,
+        "adjustment"   :  "adjust" ,
         "dependent"   :  "depend" ,
         "adoption"   :  "adopt" ,
         "homologou"   :  "homolog" ,

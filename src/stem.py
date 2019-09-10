@@ -200,6 +200,7 @@ class PorterStemmer:
             m = self.find_m(s[:-6])
             if m > 0:
                 s = s[:-3]+"e"
+
         return s
 
 
@@ -233,6 +234,8 @@ class PorterStemmer:
             if m > 0:
                 s = s[:-4]
 
+        return s
+
 
     def step4(self, s):
         if s[-2:] == 'al':
@@ -263,7 +266,7 @@ class PorterStemmer:
             m = self.find_m(s[:-4])
             if m > 1:
                 s = s[:-4]
-        elif s[-4:] == 'ant':
+        elif s[-3:] == 'ant':
             m = self.find_m(s[:-3])
             if m > 1:
                 s = s[:-3]
@@ -312,11 +315,20 @@ class PorterStemmer:
             if m > 1:
                 s = s[:-3]
 
+        return s
 
     def __call__(self, s: str):
+        s = s.strip()
         s = self.step1a(s)
         s = self.step1b(s)
         s = self.step1c(s)
+        s = self.step2(s)
+        s = self.step3(s)
+        s = self.step4(s)
         s = self.step5a(s)
         s = self.step5b(s)
         return s
+
+if __name__ == '__main__':
+    stemmer = PorterStemmer()
+    print(stemmer("adjustment"))
