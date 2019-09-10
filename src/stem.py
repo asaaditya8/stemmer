@@ -18,7 +18,7 @@ class PorterStemmer:
     def find_m(self, s):
         i = 0
         m = 0
-        while i < len(s):
+        while i < len(s)-1:
             if self.is_vowel(s, i) and self.is_consonant(s, i+1):
                 m += 1
                 i += 2
@@ -96,9 +96,26 @@ class PorterStemmer:
         return s
 
     def step1c(self, s):
-        if s[-1] == 'y':
+        if s[-1].lower() == 'y':
             if self.contains_vowel(s[:-1]):
                 s = s[:-1] + 'i'
+
+        return s
+
+    def step5a(self, s):
+        if s[-1].lower() == 'e':
+            m = self.find_m(s[:-1])
+            if m > 1:
+                s = s[:-1]
+            elif m == 1 and not self.ends_cvc(s[:-1]):
+                s = s[:-1]
+
+        return s
+
+    def step5b(self, s):
+        m = self.find_m(s)
+        if m > 1 and self.ends_in_dub_const(s) and s[-1].lower() == 'l':
+            s = s[:-1]
 
         return s
 
@@ -106,4 +123,6 @@ class PorterStemmer:
         s = self.step1a(s)
         s = self.step1b(s)
         s = self.step1c(s)
+        s = self.step5a(s)
+        s = self.step5b(s)
         return s
