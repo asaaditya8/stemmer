@@ -95,7 +95,15 @@ class PorterStemmer:
 
         return s
 
+    def step1c(self, s):
+        if s[-1] == 'y':
+            if self.contains_vowel(s[:-1]):
+                s = s[:-1] + 'i'
+
+        return s
+
     def __call__(self, s: str):
         s = self.step1a(s)
         s = self.step1b(s)
+        s = self.step1c(s)
         return s
